@@ -1,10 +1,1 @@
-video {
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
-    margin-top: 1rem;
-    border-radius: 0.5rem;
-}
 
-canvas {
-    width: 342px;
-    height: 291px;
-}

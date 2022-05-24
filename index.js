@@ -1,46 +1,43 @@
-const cameraButton = document.querySelector('#start-camera');
-const videoElem = document.querySelector('#camera');
-const takePictureButton = document.querySelector('#take-picture');
-const canvas = document.querySelector('#picture');
-const galleryElem = document.querySelector('#gallery');
+let canvas = document.querySelector("#canvas")
+let context = canvas.getContext("2d");
+let video = document.querySelector("#video")
+let gallery = document.querySelector("#gallery")
 
-const ctx = canvas.getContext('2d');
-let stream;
-const images = [];
 
-cameraButton.addEventListener('click', async () => {
-    if ('mediaDevices' in navigator) {
-        stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-        console.log(stream);
-        videoElem.srcObject = stream;
-    }
-});
+let images = [];
 
-takePictureButton.addEventListener('click', () => {
-    ctx.drawImage(videoElem, 0, 0, canvas.width, canvas.height);
-    const imageData = canvas.toDataURL('image/png'); // Konverterar det till en png-bild
 
+if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+
+    navigator.mediaDevices.getUserMedia({video: true}).then(stream => {
+        video.srcObject = stream;
+        video.play()
+    })
+
+}
+
+
+
+document.getElementById("snap").addEventListener("click",() => {
+    context.drawImage(video, 0,0,640, 480);
+    const imageData = canvas.toDataURL("image/png");
+
+
+    
+
+    
+    
+    
+    images = JSON.parse(localStorage.getItem("savedImages")) || [];
     images.push({
         id: images.length,
-        image: imageData        
-    });
+        image: imageData
+    })
+    localStorage.setItem("savedImages", JSON.stringify(images));
 
-    localStorage.setItem('cameraApp', JSON.stringify(images));
 });
 
-function createImage(image) {
-    const imageElem = document.createElement('img');
-    imageElem.setAttribute('src', image.image);
 
-    galleryElem.append(imageElem);
-}
 
-function getImages() {
-    const images = JSON.parse(localStorage.getItem('cameraApp'));
 
-    for(const image of images) {
-        createImage(image);
-    }
-}
 
-getImages();
