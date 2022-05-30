@@ -10,7 +10,7 @@ function getImages() {
     let imageArray = images.map(function(image){
         return ` <div class="image-wrapper">
         <img src ="${image.image}" id="${image.id}"></img>
-        <button id="delete-btn" onclick="deleteFunction('${image.image}')">X</button>
+        <button id="delete-btn" onclick="deleteFunction('${image.image}')"><i class="fa fa-times" aria-hidden="true"></i></button>
     </div> `
  
     }).join(" ")
