@@ -7,7 +7,7 @@ let images = [];
 
 if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
-    navigator.mediaDevices.getUserMedia({video: {width: 342, height: 291}}).then(stream => {
+    navigator.mediaDevices.getUserMedia({video: {width: 350, height: 291}}).then(stream => {
         video.srcObject = stream;
         video.play()
     })
@@ -15,7 +15,7 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 }
 
 document.getElementById("snap").addEventListener("click",() => {
-    context.drawImage(video, 0,0,342, 291);
+    context.drawImage(video, 0,0,canvas.width, canvas.height);
     const imageData = canvas.toDataURL("image/png");
 
 
@@ -31,6 +31,12 @@ document.getElementById("snap").addEventListener("click",() => {
         image: imageData
     })
     localStorage.setItem("savedImages", JSON.stringify(images));
+
+    if (notificationPermission === 'granted') {
+        createNotification();
+        
+    }
+    
 
 });
 
@@ -55,3 +61,28 @@ window.addEventListener('load', async () => {
         }
     }
 });
+
+
+//notis
+
+function createNotification() {
+    const text = 'Bild sparad!';
+
+    const notification = new Notification('Notis', { body: text });
+
+    notification.addEventListener('click', () => {
+        window.open('https://localhost:3000');
+    });
+}
+
+function requestNotificationsPermission() {
+    Notification.requestPermission().then((permission) => {
+        console.log(permission);
+        notificationPermission = permission;
+    });
+}
+
+
+
+requestNotificationsPermission();
+

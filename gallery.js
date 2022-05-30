@@ -1,21 +1,55 @@
 
+let images = JSON.parse(localStorage.getItem("savedImages"));
+ 
+
 
 
 function getImages() {
-    const images = JSON.parse(localStorage.getItem("savedImages"));
+    
 
-    for(const image of images) {
-        createImage(image);
+    let imageArray = images.map(function(image){
+        return ` <div class="image-wrapper">
+        <img src ="${image.image}" id="${image.id}"></img>
+        <button id="delete-btn" onclick="deleteFunction('${image.image}')">X</button>
+    </div> `
+ 
+    }).join(" ")
+
+   
+    document.getElementById("gallery").innerHTML = imageArray
+        
     }
+
+  
+
+ 
+
+
+function deleteFunction (index) {
+
+    
+    images = JSON.parse(localStorage.getItem("savedImages"));
+    
+    
+
+    images = images.filter((image) => {
+        
+        if (image.image !== index) {
+            return image.image
+        }
+    });
+    
+saveToLocalStorage(images);
+    
+} 
+
+function saveToLocalStorage(images) {
+
+    document.location.reload(true)
+    localStorage.setItem('savedImages', JSON.stringify(images));
+    
 }
 
-function createImage(image) {
-    const imageElem = document.createElement("img");
-    imageElem.setAttribute("src", image.image);
-
-    gallery.append(imageElem);
-
-}
 
 getImages()
 
@@ -29,3 +63,4 @@ window.addEventListener('load', async () => {
         }
     }
 });
+

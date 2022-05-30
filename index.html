@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://use.fontawesome.com/41808bdaa3.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
+
     <title>MediaDevicesTask</title>
 </head>
+
 <body>
-   
-    <button id="snap">FÖREVIGA ETT ÖGONBLICK</button>
-    <button id="newPicture">FÅNGA ETT NYTT ÖGONBLICK</button>
+    <a id="gallery-btn" href="/gallery.html"><i class="fa fa-th fa-3x" aria-hidden="true"></i></a>
+    
+<section class="video-wrapper">
+    
     <video src="" id="video" width="640" height="480" autoplay></video>
     <canvas id="canvas" width="640" height="480"></canvas>
-   
+    <button id="snap">FÖREVIGA ETT ÖGONBLICK</button>
+    <button id="newPicture">FÅNGA ETT NYTT ÖGONBLICK</button>
+
+</section>
 
 
-    <a href="/gallery.html">Gallery</a>
+    
     <script src="index.js"></script>
 </body>
 </html>

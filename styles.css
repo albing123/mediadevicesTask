@@ -1,3 +1,84 @@
 #newPicture {
     visibility: hidden;
 }
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    background-color: #2A2E30;
+}
+
+#snap, #newPicture {
+
+position: absolute;
+bottom: 29px;
+
+width: 342px;
+height: 70px;
+
+background: #FFFFFF;
+border-radius: 4px;
+font-family: Noto Sans;
+font-weight: 700;
+font-size: 16px;
+text-transform: capitalize;
+
+}
+
+.video-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+#gallery-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+#video, #canvas {
+    position: absolute;
+    top: 25%;
+    width: 342px;
+    height: 291px;
+    object-fit: fill;
+}
+
+.gallery-wrapper {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 175px);
+    grid-auto-rows: 150px;
+    margin-top: 100px;
+
+}
+
+#gallery {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 175px);
+    grid-auto-rows: 150px;
+    margin-top: 100px
+
+}
+
+#gallery img {
+position: absolute;
+height: 139px;
+width: 163px;
+
+}
+
+
+
+
+#delete-btn {
+position: absolute;
+margin-left: 140px;
+}
