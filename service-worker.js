@@ -16,7 +16,7 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', async (event) => {
     console.log(event.request.url);
-    if (!navigator.onLine) { // Kolla om vi har internet eller ej, ger tillbaka true/false
+    if (!navigator.onLine) { 
         console.log('Offline');
         event.respondWith(
             caches.match(event.request).then((response) => {
