@@ -14,6 +14,8 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
 }
 
+
+
 document.getElementById("snap").addEventListener("click",() => {
     context.drawImage(video, 0,0,canvas.width, canvas.height);
     const imageData = canvas.toDataURL("image/png");
@@ -32,10 +34,13 @@ document.getElementById("snap").addEventListener("click",() => {
     })
     localStorage.setItem("savedImages", JSON.stringify(images));
 
-    if (notificationPermission === 'granted') {
+    
+    
+    if (notificationPermission === "granted") {
         createNotification();
         
     }
+    
     
 
 });
@@ -57,18 +62,19 @@ window.addEventListener('load', async () => {
         try {
             await navigator.serviceWorker.register('service-worker.js');
         } catch(err) {
-            console.error('Whooopsie!', err)
+            console.error('Error with Service Worker', err)
         }
     }
 });
 
 
-//notis
+
 
 function createNotification() {
     const text = 'Bild sparad!';
 
-    const notification = new Notification('Notis', { body: text });
+    const notification = new Notification('Notis', { body: text,
+    icon: "logo.png" });
 
     notification.addEventListener('click', () => {
         window.open('https://localhost:3000');
